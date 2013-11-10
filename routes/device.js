@@ -2,20 +2,27 @@
  * Device
  */
 
+var http = require('http');
+
 /*{{{设备管理 */
 /**
  * 设备管理 
  */
+var common = require('../lib/common')
+
+var data = {title: '设备管理', content: '', keyword: ''};
 exports.index = function(req, res) {
 	var options = {
-  hostname: '192.168.1.132',
-  port: 9080,
-  path: '/user/?/device.json',
-  method: 'POST'
-};
+		module: 'user',
+		action: 'device.json',
+		sucess: function(chunk) {
+			var result = JSON.parse(chunk);
+			data.data = result.data.result;
+			res.render('device', data);
+		}
+	};
 
-	
-	res.render('device', {title : '设备列表', content : '设备列表内容'});
+	common.test(res, options);
 };
 /*}}}*/
 // {{{设备管理添加
