@@ -13,7 +13,7 @@
  
 /**
 +------------------------------------------------------------------------------
-* 管理端基本库 :各个模块操作的基类
+* 设备
 +------------------------------------------------------------------------------
 * 
 * @package 
@@ -23,56 +23,37 @@
 +------------------------------------------------------------------------------
 */
 
-function ModuleBase()
-{
+function SwanDevice() {
+	ModuleBase.call(this);
 	var __this = this;
-	// {{{ members
 
-	/**
-	 * this 对象在外部的名字
-	 *
-	 * @type {String}  
-	 */
-	this.__thisName = 'this';
-	
+	// {{{ members
 	// }}}
 	// {{{ functions
-	// {{{ function setThisName()
+	// {{{ function init()
 		
 	/**
-	 * 设置this对象在外部的名字
-	 *
-	 * @param {String} thisName
-	 * @return {Void}  
+	 * 初始化  
 	 */
-	this.setThisName = function (thisName)
+	this.init = function()
 	{
-		__this.__thisName = thisName;	
+		$('#deviceBtn').bind('click', __this.addDo);
 	}
 
 	// }}}
-	// {{{ function jump()
+	
+	this.addDo = function() {
+		//todo 对数据验证
 		
-	/**
-	 * 设置this对象在外部的名字
-	 *
-	 * @param {String} thisName
-	 * @return {Void}  
-	 */
-	this.mainPage = function (url)
-	{
+		//异步提交数据
 		$.ajax({
-		   type: "GET",
-		   url: url,
-		   success: function(data){
-				$('.page-content').html(data);
-		   }
+			url : gPrefixUrl + 'device_doAdd',
+			type : 'post',
+			data : $('#deviceForm').serialize(),
+			success : function(data) {
+				console.log(data);
+			}
 		});
 	}
-
-	// }}}
 	// }}}
 }
-
-//全局变量
-var gPrefixUrl = 'http://192.168.37.130:3000/';

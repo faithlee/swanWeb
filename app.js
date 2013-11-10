@@ -42,6 +42,7 @@ app.get('/monitor_update', monitor.update);
 //device
 app.get('/device', device.index);
 app.get('/device_add', device.add);
+app.post('/device_doAdd', device.addData);
 app.get('/device_update', device.update);
 
 http.createServer(app).listen(app.get('port'), function(){
