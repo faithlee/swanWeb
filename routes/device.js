@@ -33,23 +33,11 @@ exports.add = function(req, res) {
 	res.render('device_add', {title : '设备添加', keyword : '设备添加'});
 }
 // }}}
-/*{{{handle device_add data*/
+/*{{{处理添加的数据*/
 /**
- * handle device_add data
+ * 处理添加的数据
  */
-exports.addData = function(req, res) {
-//       var deviceInfo = ''; 
-//   
-//       req.setEncoding('utf8');
-//   
-//       req.addListener('data', function(chunck) {
-//           deviceInfo += chunk;
-//       }); 
-//   
-//       req.addListener('end', function() {
-//           console.log(deviceInfo);
-//       }); 
-//   }
+exports.addData = function (req, res) {
 	var params = {};
 	params.name = req.body.device_name;
 	params.display_name = req.body.display_name;
@@ -63,6 +51,7 @@ exports.addData = function(req, res) {
 			res.send(chunk);
 		}
 	}	
+
 	common.test(res, options);
 }	
 /*}}}*/
@@ -72,5 +61,52 @@ exports.addData = function(req, res) {
  */
 exports.update = function(req, res) {
 	res.render('device_update', {title : '设备管理修改', keyword : '', content : ''});
+
 }
 /*}}}*/
+/*{{{更新设备信息*/
+/**
+ * @todo 更新设备信息 
+ */
+exports.updateData = function (req, res) {
+	var params = {};
+	params.did = req.body.did;
+	params.name = req.body.device_name;
+	params.display_name = req.body.display_name;
+	params.host_name = req.body.host_name;
+
+	var options = {
+		module : 'user',
+		action : 'device.mod',
+		params : params,
+		sucess : function (chunk) {
+			console.log(chunk);
+			res.send(chunk);
+		}
+	};
+
+	common.test(res, options);
+}
+/*}}}*/
+/*{{{删除设备信息*/
+/**
+ * 删除设备信息 
+ */
+exports.deleteData = function (req, res) {
+	var params = {};
+	params.did = req.query.did;
+	
+	var options = {
+		module : 'user',
+		action : 'device.del',
+		params : params,
+		sucess : function (chunk) {
+			console.log(chunk);
+		}
+	}
+	
+	common.test(res, options);
+}
+/*}}}*/
+
+

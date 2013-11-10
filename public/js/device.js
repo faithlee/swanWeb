@@ -28,20 +28,27 @@ function SwanDevice() {
 	var __this = this;
 
 	// {{{ members
+
 	// }}}
 	// {{{ functions
 	// {{{ function init()
-		
+
 	/**
 	 * 初始化  
 	 */
 	this.init = function()
 	{
 		$('#deviceBtn').bind('click', __this.addDo);
-	}
 
+		$('#updateDeviceBtn').bind('click', __this.deviceUpdate);
+		
+		$('.deleteDeviceBtn').bind('click', __this.deviceDelete);
+	}
 	// }}}
-	
+	/*{{{添加设备请求*/
+	/**
+	 * 添加设备请求
+	 */
 	this.addDo = function() {
 		//todo 对数据验证
 		
@@ -50,10 +57,44 @@ function SwanDevice() {
 			url : gPrefixUrl + 'device_doAdd',
 			type : 'post',
 			data : $('#deviceForm').serialize(),
+			success : function (data) {
+				console.log(data);
+			}
+		});
+	}
+	/*}}}*/
+	/*{{{更新设备数据*/
+	/**
+	 * @todo 更新设备数据  
+	 */
+	this.deviceUpdate = function() {
+		var deviceId = $(this).attr('deviceId');
+
+		$.ajax({
+			url : gPrefixUrl + 'device_doUpdate',
+			type : 'post',
+			data : $('#deviceForm').serialize(),
+			success : function (data) {
+				console.log(data);
+			}
+		});
+	}
+	/*}}}*/
+	/*{{{删除设备数据*/
+	/**
+	 * @todo 删除设备数据
+	 */
+	this.deviceDelete = function() {
+		var deviceId = $(this).attr('deviceId');
+
+		$.ajax({
+			url : gPrefixUrl + 'device_doDelete',
+			type : 'post',
+			data : {did : deviceId},
 			success : function(data) {
 				console.log(data);
 			}
 		});
 	}
-	// }}}
+	/*}}}*/
 }

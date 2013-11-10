@@ -41,9 +41,15 @@ app.get('/monitor_update', monitor.update);
 
 //device
 app.get('/device', device.index);
+
 app.get('/device_add', device.add);
 app.post('/device_doAdd', device.addData);
+
 app.get('/device_update', device.update);
+app.post('/device_doUpdate', device.updateData);
+
+app.post('/device_doDelete', device.deleteData);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

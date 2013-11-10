@@ -51,7 +51,7 @@ function ModuleBase()
 	}
 
 	// }}}
-	// {{{ function jump()
+	// {{{ function mainPage()
 		
 	/**
 	 * 设置this对象在外部的名字
