@@ -126,12 +126,16 @@
 </div>
 <!-- END PAGE CONTAINER--> 
 
+<script src="js/index.js" type="text/javascript"></script>
 <script src="js/device.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-	var swanDevice = new SwanDevice();
-	swanDevice.setThisName('swanDevice');
-	swanDevice.init();
+	var swanDeviceIndex = new SwanIndex();
+//	swanIndex.setThisName('swanIndex');
+	swanDeviceIndex.init();
+
+	var swanInit = new SwanDevice();
+	swanInit.init();
 </script>
 
 

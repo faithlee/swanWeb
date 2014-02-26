@@ -6,8 +6,10 @@
 var express = require('/usr/local/node-v0.10.17/lib/node_modules/express');
 var routes = require('./routes');
 var user = require('./routes/user');
-var monitor = require('./routes/monitor');
+
 var device = require('./routes/device');
+var monitor = require('./routes/monitor');
+
 var http = require('http');
 var path = require('path');
 
@@ -34,11 +36,6 @@ app.get('/', routes.index);
 
 app.get('/users', user.list);
 
-//monitor
-app.get('/monitor', monitor.index);
-app.get('/monitor_add', monitor.add);
-app.get('/monitor_update', monitor.update);
-
 //device
 app.get('/device', device.index);
 
@@ -50,6 +47,12 @@ app.post('/device_doUpdate', device.updateData);
 
 app.post('/device_doDelete', device.deleteData);
 
+//monitor
+app.get('/monitor', monitor.index);
+app.get('/monitor_add', monitor.add);
+app.get('/monitor_update', monitor.update);
+
+//monitor_attr
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
