@@ -86,7 +86,7 @@ function SwanDevice() {
 	 */
 	this.deviceDelete = function() {
 		var deviceId = $(this).attr('deviceId');
-		alert(deviceId)
+
 		$.ajax({
 			url : gPrefixUrl + 'device_doDelete',
 			type : 'post',

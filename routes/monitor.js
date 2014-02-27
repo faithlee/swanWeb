@@ -1,13 +1,26 @@
 /*
  * Monitor
  */
+var common = require('../lib/common');
 
 /*{{{module of monitor_index*/
 /**
  * module of monitor_index
  */
 exports.index = function(req, res) {
-	res.render('monitor', { title: 'Express' , keyword: 'Express Keyword', content: 'Express Content'});
+	var data = { title: 'Express' , keyword: 'Express Keyword', content: 'Express Content'};
+	var options = {
+		module : 'dev',
+		action : 'monitor.json',
+		sucess : function (chunk) {
+			var results = JSON.parse(chunk);
+			data.data = results.data.result;
+			
+			res.render('monitor', data);
+		}
+	}
+	
+	common.test(res, options);
 };
 /*}}}*/
 /*{{{module of monitor_add*/
