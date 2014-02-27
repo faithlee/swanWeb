@@ -50,8 +50,12 @@ app.post('/device_doDelete', device.deleteData);
 //monitor
 app.get('/monitor', monitor.index);
 app.get('/monitor_add', monitor.add);
-app.get('/monitor_update', monitor.update);
+app.post('/monitor_doAdd', monitor.addData);
 
+app.get('/monitor_update', monitor.update);
+app.post('/monitor_doUpdate', monitor.updateData);
+
+app.get('/monitor_doDelete', monitor.delelteData);
 //monitor_attr
 
 http.createServer(app).listen(app.get('port'), function(){

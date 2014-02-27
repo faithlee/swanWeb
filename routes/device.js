@@ -47,12 +47,12 @@ exports.addData = function (req, res) {
 		module: 'user',
 		action: 'device.add',	
 		params: params,
-		sucess: function(chunk) {
+		success: function(chunk) {
 			res.send(chunk);
 		}
 	}	
 
-	common.test(res, options);
+	common.handleData(res, options);
 }	
 /*}}}*/
 /*{{{设备管理修改*/
@@ -108,5 +108,3 @@ exports.deleteData = function (req, res) {
 	common.test(res, options);
 }
 /*}}}*/
-
-

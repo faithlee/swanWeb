@@ -13,7 +13,7 @@
  
 /**
 +------------------------------------------------------------------------------
-* 管理端基本库 :各个模块操作的基类
+* 
 +------------------------------------------------------------------------------
 * 
 * @package 
@@ -45,11 +45,9 @@ function ModuleBase()
 	 * @param {String} thisName
 	 * @return {Void}  
 	 */
-	this.setThisName = function (thisName)
-	{
+	this.setThisName = function (thisName) {
 		__this.__thisName = thisName;	
 	}
-
 	// }}}
 	// {{{ function mainPage()
 		
@@ -73,6 +71,8 @@ function ModuleBase()
 	// }}}
 	// }}}
 }
-
-//全局变量
+/*{{{Global VAR*/
 var gPrefixUrl = 'http://192.168.37.130:3000/';
+/*}}}*/
+
+

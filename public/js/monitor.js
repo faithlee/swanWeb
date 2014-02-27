@@ -13,7 +13,7 @@
  
 /**
 +------------------------------------------------------------------------------
-* 设备
+* monitor
 +------------------------------------------------------------------------------
 * 
 * @package 
@@ -23,7 +23,7 @@
 +------------------------------------------------------------------------------
 */
 
-function SwanDevice() {
+function SwanMonitor() {
 	ModuleBase.call(this);
 	var __this = this;
 
@@ -38,59 +38,59 @@ function SwanDevice() {
 	 */
 	this.init = function()
 	{
-		$('#deviceBtn').bind('click', __this.addDo);
+		$('#monitorBtn').bind('click', __this.doAddData);
 
-		$('#updateDeviceBtn').bind('click', __this.deviceUpdate);
+		$('#updateBtn').bind('click', __this.monitorUpdate);
 		
-		$('.deleteDeviceBtn').bind('click', __this.deviceDelete);
+		$('.deleteBtn').bind('click', __this.monitorDelete);
 	}
 	// }}}
-	/*{{{添加设备请求*/
+	/*{{{添加监控器*/
 	/**
-	 * 添加设备请求
+	 * 添加监控器
 	 */
-	this.addDo = function() {
-		//@todo 对数据验证
+	this.doAddData = function() {
+		//todo 对数据验证
 		
 		//异步提交数据
 		$.ajax({
-			url : gPrefixUrl + 'device_doAdd',
+			url : gPrefixUrl + 'monitor_doAdd',
 			type : 'post',
-			data : $('#deviceForm').serialize(),
+			data : $('#monitorForm').serialize(),
 			success : function (data) {
 				console.log(data);
 			}
 		});
 	}
 	/*}}}*/
-	/*{{{更新设备数据*/
+	/*{{{更新监控器*/
 	/**
 	 * @todo 更新设备数据  
 	 */
-	this.deviceUpdate = function() {
-		var deviceId = $(this).attr('deviceId');
+	this.monitorUpdate = function() {
+		var monitorId = $(this).attr('monitorId');
 
 		$.ajax({
-			url : gPrefixUrl + 'device_doUpdate',
+			url : gPrefixUrl + 'monitor_doUpdate',
 			type : 'post',
-			data : $('#deviceForm').serialize(),
+			data : $('#monitorForm').serialize(),
 			success : function (data) {
 				console.log(data);
 			}
 		});
 	}
 	/*}}}*/
-	/*{{{删除设备数据*/
+	/*{{{delete monitor*/
 	/**
-	 * @todo 删除设备数据
+	 * delete monitor
 	 */
-	this.deviceDelete = function() {
-		var deviceId = $(this).attr('deviceId');
+	this.monitorDelete = function() {
+		var monitorId = $(this).attr('monitorId');
 
 		$.ajax({
-			url : gPrefixUrl + 'device_doDelete',
-			type : 'post',
-			data : {did : deviceId},
+			url : gPrefixUrl + 'monitor_doDelete',
+			type : 'get',
+			data : {mid : monitorId},
 			success : function(data) {
 				console.log(data);
 			}
