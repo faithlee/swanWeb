@@ -34,7 +34,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 
-app.get('/users', user.index);
+//app.get('/users', user.index);
 
 //device
 app.get('/device', device.index);

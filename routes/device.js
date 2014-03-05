@@ -14,14 +14,14 @@ exports.index = function(req, res) {
 	var options = {
 		module: 'user',
 		action: 'device.json',
-		sucess: function(chunk) {
+		success: function(chunk) {
 			var result = JSON.parse(chunk);
 			data.data = result.data.result;
 
+console.log(data)
 			res.render('device', data);
 		}
 	};
-
 	common.handleData(res, options);
 };
 /*}}}*/
@@ -79,12 +79,12 @@ exports.updateData = function (req, res) {
 		module : 'user',
 		action : 'device.mod',
 		params : params,
-		sucess : function (chunk) {
+		success : function (chunk) {
 			res.send(chunk);
 		}
 	};
 
-	common.test(res, options);
+	common.handleData(res, options);
 }
 /*}}}*/
 /*{{{删除设备信息*/
@@ -99,11 +99,11 @@ exports.deleteData = function (req, res) {
 		module : 'user',
 		action : 'device.del',
 		params : params,
-		sucess : function (chunk) {
+		success : function (chunk) {
 			console.log(chunk);
 		}
 	}
 	
-	common.test(res, options);
+	common.handleData(res, options);
 }
 /*}}}*/

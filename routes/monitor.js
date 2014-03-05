@@ -71,7 +71,6 @@ exports.updateData = function (req, res) {
 	params.name = req.body.name;
 	params.display_name = req.body.display_name;
 
-	console.log(params); 
 	var options = {
 		module : 'dev',
 		action : 'monitor.mod',
