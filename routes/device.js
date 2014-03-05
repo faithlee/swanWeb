@@ -3,13 +3,12 @@
  */
 
 var http = require('http');
+var common = require('../lib/common')
 
 /*{{{设备管理 */
 /**
  * 设备管理 
  */
-var common = require('../lib/common')
-
 var data = {title: '设备管理', content: '', keyword: ''};
 exports.index = function(req, res) {
 	var options = {
@@ -18,11 +17,12 @@ exports.index = function(req, res) {
 		sucess: function(chunk) {
 			var result = JSON.parse(chunk);
 			data.data = result.data.result;
+
 			res.render('device', data);
 		}
 	};
 
-	common.test(res, options);
+	common.handleData(res, options);
 };
 /*}}}*/
 // {{{设备管理添加
@@ -80,7 +80,6 @@ exports.updateData = function (req, res) {
 		action : 'device.mod',
 		params : params,
 		sucess : function (chunk) {
-			console.log(chunk);
 			res.send(chunk);
 		}
 	};
