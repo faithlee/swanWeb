@@ -72,7 +72,7 @@ function ModuleBase()
 	// }}}
 }
 /*{{{Global VAR*/
-var gPrefixUrl = 'http://192.168.37.130:3000/';
+var gPrefixUrl = window.location;
 /*}}}*/
 
 
