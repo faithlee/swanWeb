@@ -51,6 +51,7 @@ button.close {
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 0;
+	margin-top: -8px;
     padding: 4px 12px;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
@@ -172,3 +173,36 @@ button.close {
 .modal-footer .btn-block + .btn-block {
     margin-left: 0;
 }
+.portlet.box.blue {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-image: none;
+	border-style: none solid solid;
+}
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+input.m-wrap[class*="span"] {
+    float: none;
+    height: 25px !important;
+    margin-left: 0;
+}	
+.form-horizontal .controls {
+    margin-left: 140px;
+}
+.form-horizontal .control-label {
+    float: left;
+    padding-top: 5px;
+    text-align: right;
+    width: 120px;
+}
+.form .form-actions {
+    margin-top: 0 !important;
+    padding-left: 140px;
+}
+	
+
+
+	

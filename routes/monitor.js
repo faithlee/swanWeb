@@ -58,6 +58,7 @@ exports.addData = function (req, res) {
  * module of monitor_upate
  */
 exports.update = function(req, res) {
+	
 	res.render('monitor_update', {title : '修改监控器', keyword : '', content : ''});
 }
 /*}}}*/
