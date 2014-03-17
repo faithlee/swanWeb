@@ -111,12 +111,12 @@ button.close {
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 6px;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    left: 50%;
+    left: 40%;
     margin-left: -280px;
     outline: 0 none;
     position: fixed;
     top: 10%;
-    width: 560px;
+    width: 900px;
     z-index: 1050;
 }
 .modal.fade {
@@ -124,7 +124,7 @@ button.close {
     transition: opacity 0.3s linear 0s, top 0.3s ease-out 0s;
 }
 .modal.fade.in {
-    top: 10%;
+    top: 11%;
 }
 .modal-header {
     border-bottom: 1px solid #EEEEEE;
@@ -173,6 +173,13 @@ button.close {
 .modal-footer .btn-block + .btn-block {
     margin-left: 0;
 }
+
+.portlet {
+    clear: both;
+    margin-top: 0;
+    padding: 0;
+}
+
 .portlet.box.blue {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -200,7 +207,7 @@ input.m-wrap[class*="span"] {
 }
 .form .form-actions {
     margin-top: 0 !important;
-    padding-left: 140px;
+    padding-left: 105px;
 }
 	
 

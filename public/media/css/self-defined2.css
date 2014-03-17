@@ -1,0 +1,13 @@
+.row-fluid {
+    width: 40%;
+}
+
+[class*="span"] {
+    float: left;
+    margin-left: 0px;
+    min-height: 1px;
+}
+
+.span5 {
+    width: 60%;
+}
