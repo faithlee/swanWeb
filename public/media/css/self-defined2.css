@@ -1,5 +1,5 @@
 .row-fluid {
-    width: 40%;
+/*    width: 40%;*/
 }
 
 [class*="span"] {
@@ -10,4 +10,8 @@
 
 .span5 {
     width: 60%;
+}
+
+.span4 {
+    width: 360px;
 }

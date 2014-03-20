@@ -191,6 +191,7 @@ button.close {
     border-image: none;
 	border-style: none solid solid;
 }
+
 .form-horizontal .control-group {
     margin-bottom: 10px;
 }
@@ -219,4 +220,3 @@ input.m-wrap[class*="span"] {
     padding: 15px 20px 7px;
 }
 
-	
