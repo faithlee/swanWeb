@@ -97,5 +97,15 @@ function SwanMonitor() {
 		});
 	}
 	/*}}}*/
+	/*{{{show monitor adpater attribute */
+
+	/**
+	 * show monitor adpater attribute  
+	 */
+	this.showAttribute = function () {
+		var monitorDelay = document.getElementById('myModal');
+		//var attrId = document.getElementById('');
+	}
+	/*}}}*/
 	// }}}
 }

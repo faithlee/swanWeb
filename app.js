@@ -8,6 +8,7 @@ var user = require('./routes/user');
 
 var device = require('./routes/device');
 var monitor = require('./routes/monitor');
+var mAttribute = require('./routes/mAttribute');
 
 var http = require('http');
 var path = require('path');
@@ -56,6 +57,8 @@ app.post('/monitor_doUpdate', monitor.updateData);
 
 app.get('/monitor_doDelete', monitor.delelteData);
 //monitor_attr
+app.get('/monitor_attr', mAttribute.index);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
