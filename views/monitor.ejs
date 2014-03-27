@@ -372,7 +372,7 @@
 									<td class="hidden-480"><%= data[i].steps %></td>
 									<td><%= data[i].monitor_display_name %></td>							
 									<td id="table-center-15">
-										<a href="javascript:;">attribute</a> |&nbsp;
+										<a class="m_attr_lightbox" attr_id="<%= data[i].monitor_id %>" href="javascript:;">attribute</a> |&nbsp;
 										<a href="javascript:;">metric</a> |&nbsp;
 										<a href="javascript:;">achives</a>
 									</td>
@@ -557,6 +557,7 @@
 
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <script src="js/index.js" type="text/javascript"></script>
+<script src="js/swan.js" type="text/javascript"></script>
 <script src="js/monitor.js" type="text/javascript"></script>
 <!-- END JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->

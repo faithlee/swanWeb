@@ -18,7 +18,6 @@ exports.index = function(req, res) {
 			var result = JSON.parse(chunk);
 			data.data = result.data.result;
 
-console.log(data)
 			res.render('device', data);
 		}
 	};

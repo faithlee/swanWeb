@@ -56,6 +56,7 @@ app.get('/monitor_update', monitor.update);
 app.post('/monitor_doUpdate', monitor.updateData);
 
 app.get('/monitor_doDelete', monitor.delelteData);
+
 //monitor_attr
 app.get('/monitor_attr', mAttribute.index);
 

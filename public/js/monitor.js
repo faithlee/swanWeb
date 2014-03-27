@@ -43,6 +43,8 @@ function SwanMonitor() {
 		$('#updateBtn').bind('click', __this.monitorUpdate);
 		
 		$('.deleteBtn').bind('click', __this.monitorDelete);
+
+		$('.m_attr_lightbox').bind('click', __this.showAttribute);
 	}
 	// }}}
 	/*{{{添加监控器*/
@@ -103,8 +105,20 @@ function SwanMonitor() {
 	 * show monitor adpater attribute  
 	 */
 	this.showAttribute = function () {
-		var monitorDelay = document.getElementById('myModal');
-		//var attrId = document.getElementById('');
+		var monitorDom = G('myModal');
+		var attrId = $(this).attr('attr_id');
+		
+		$(monitorDom).show();
+
+		$.ajax({
+			'url' : gPrefixUrl + 'monitor_attr',  
+			'type' : 'get',
+			'data' : {attr_id : attrId},
+			'success' : function (data) {
+				console.log(data)	
+			}
+		});
+	//	console.log(monitorDom)
 	}
 	/*}}}*/
 	// }}}
