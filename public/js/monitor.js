@@ -115,10 +115,41 @@ function SwanMonitor() {
 			'type' : 'get',
 			'data' : {attr_id : attrId},
 			'success' : function (data) {
-				console.log(data)	
+					//console.log(data);
+				var result = eval('(' + data + ')');
+				if (undefined != result && undefined != result.data.result) {
+					var attrHtml = __this.makeTable(result.data.result);
+					G('attr_list').innerHTML =  attrHtml;
+				}
 			}
 		});
-	//	console.log(monitorDom)
+	}
+	/*}}}*/
+	/*{{{function makeTable()*/
+		
+	/**
+	 * 生成属性对应的表格
+	 */
+	this.makeTable = function (data) 
+	{
+		var trHtml = [];		
+		trHtml.push()	
+
+		if (undefined == data || 'object' != typeof(data)) {
+			return false;	
+		}
+		
+		for (var i in data) {
+			trHtml.push('<tr>');
+			trHtml.push('<td>#' + data[i].attr_id + '</td>');
+			trHtml.push('<td>' + data[i].attr_name + '</td>');
+			trHtml.push('<td>' + data[i].form_type + '</td>');
+			trHtml.push('<td>' + data[i].form_data + '</td>');
+			trHtml.push('<td><a class="edit" onclick=""  href="javascript:;">Edit</a>&nbsp;<a class="delete deleteBtn" href="javascript:;">Delete</a></td>');
+			trHtml.push('</tr>');
+		}
+
+		return trHtml.join('');
 	}
 	/*}}}*/
 	// }}}

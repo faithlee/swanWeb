@@ -416,7 +416,7 @@
 <!-- END CONTAINER -->
 <!-- START DELAY -->
 <div id="myModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: none;">
-	<div class="span4">
+	<div class="span4" style="display: none;">
 		<div class="row-fluid span4">
 			<div class="portlet box blue">
 				<div class="portlet-title">
@@ -523,26 +523,7 @@
 						<th>操作</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-							Default
-						</td>
-						<td>
-						<a class="edit" onclick="" href="javascript:;">Edit</a>&nbsp;
-						<a class="delete deleteBtn" href="javascript:;">Delete</a>
-						</td>
-					</tr>
-				</tbody>
+				<tbody id="attr_list"></tbody>
 			</table>
 		</div>
 		<div class="modal-footer">
