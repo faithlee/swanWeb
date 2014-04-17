@@ -57,8 +57,8 @@ app.post('/monitor_doUpdate', monitor.updateData);
 
 app.get('/monitor_doDelete', monitor.delelteData);
 
-//monitor_attr
-app.get('/monitor_attr', mAttribute.index);
+//monitor_attr @todo 属性有问题，暂时不解决
+//app.get('/monitor_attr', mAttribute.index);
 
 
 http.createServer(app).listen(app.get('port'), function(){
