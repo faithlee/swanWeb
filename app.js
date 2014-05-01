@@ -47,7 +47,7 @@ app.post('/device_doUpdate', device.updateData);
 
 app.post('/device_doDelete', device.deleteData);
 
-//monitor
+//madpater
 app.get('/monitor', monitor.index);
 app.get('/monitor_add', monitor.add);
 app.post('/monitor_doAdd', monitor.addData);
@@ -57,9 +57,14 @@ app.post('/monitor_doUpdate', monitor.updateData);
 
 app.get('/monitor_doDelete', monitor.delelteData);
 
-//monitor_attr @todo 属性有问题，暂时不解决
+//@todo madapter_attr  @todo 属性有问题，暂时不解决
 //app.get('/monitor_attr', mAttribute.index);
 
+//@todo madapter_metric
+
+//@todo madapter_archive
+
+//@todo dmonitor
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -3,15 +3,16 @@
  */
 var common = require('../lib/common');
 
-/*{{{module of monitor_index*/
+/*{{{module of madapter_index*/
 /**
- * module of monitor_index
+ * module of madapter_index
  */
 exports.index = function(req, res) {
 	var data = { title: 'Express' , keyword: 'Express Keyword', content: 'Express Content'};
+
 	var options = {
 		module : 'dev',
-		action : 'monitor.json',
+		action : 'madapter.json',
 		success : function (chunk) {
 			var results = JSON.parse(chunk);
 			data.data = results.data.result;
@@ -19,13 +20,13 @@ exports.index = function(req, res) {
 			res.render('monitor', data);
 		}
 	}
-	
+
 	common.handleData(res, options);
 };
 /*}}}*/
 /*{{{module of monitor_add*/
 /**
- * module of monitor_add
+ * module of dmonitor_add
  */
 exports.add = function(req, res) {
 	res.render('monitor_add', {title : '添加监控器'});

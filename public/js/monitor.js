@@ -47,9 +47,9 @@ function SwanMonitor() {
 		$('.m_attr_lightbox').bind('click', __this.showAttribute);
 	}
 	// }}}
-	/*{{{添加监控器*/
+	/*{{{add monitor*/
 	/**
-	 * 添加监控器
+	 * add monitor
 	 */
 	this.doAddData = function() {
 		//todo 对数据验证
