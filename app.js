@@ -3,11 +3,12 @@
  */
 
 var express = require('./opt/lib/node_modules/express');
+var ejs = require('./opt/lib/node_modules/ejs');
 var routes = require('./routes');
 var user = require('./routes/user');
 
 var device = require('./routes/device');
-var monitor = require('./routes/monitor');
+var madapter = require('./routes/madapter');
 var mAttribute = require('./routes/mAttribute');
 
 var http = require('http');
@@ -18,7 +19,8 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.engine('phtml', ejs.renderFile);
+app.set('view engine', 'phtml');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -47,15 +49,16 @@ app.post('/device_doUpdate', device.updateData);
 
 app.post('/device_doDelete', device.deleteData);
 
-//madpater
-app.get('/monitor', monitor.index);
-app.get('/monitor_add', monitor.add);
-app.post('/monitor_doAdd', monitor.addData);
+//madapter
+app.get('/madapter', madapter.index);
+app.post('/madapter_indexList', madapter.indexList);
+app.get('/madapter_add', madapter.add);
+app.post('/madapter_doAdd', madapter.addData);
 
-app.get('/monitor_update', monitor.update);
-app.post('/monitor_doUpdate', monitor.updateData);
+app.get('/madapter_update', madapter.update);
+app.post('/madapter_doUpdate', madapter.updateData);
 
-app.get('/monitor_doDelete', monitor.delelteData);
+app.get('/madapter_doDelete', madapter.delelteData);
 
 //@todo madapter_attr  @todo 属性有问题，暂时不解决
 //app.get('/monitor_attr', mAttribute.index);
