@@ -52,7 +52,50 @@ var swan = function () {
 		return domObj;
 	}
 	/*}}}*/
+	/*{{{alert message*/
+		
+	/**
+	 * alert message
+	 */
+	this.alertMsg = function (status, content) {
+		//var statusArr = ['warning', 'success', 'info', 'error'];
+		var msgHtml = [];
+		var status, className, msg; 
+		msg = undefined == typeof(status) || '' == status ? 'Warning' : status;
+		className = 'Waring' == status ? '' : ' alert-' + status.toLowerCase();
 
+		//msg = status.replace(/(\w)/g, function ($1) {
+		//	return $1.toUpperCase;	
+		//});
+
+		msgHtml.push('<div class="portlet">');
+		msgHtml.push('<div class="portlet-body" style="display: block;">');
+		msgHtml.push('<div class="alert' + className + '">');
+		msgHtml.push('<button data-dismiss="alert" class="close"></button>');
+		msgHtml.push('<strong>' + msg + '!</strong>' + content + '.');
+		msgHtml.push('</div></div></div>');
+			
+		return msgHtml.join('');
+	}
+
+	/*}}}*/
+	/*{{{print debug info*/
+
+	/**
+	 * print debug info  
+	 */
+	this.debug = function () {
+		//var debugInfo;
+		if (!arguments.length) {
+			return;	
+		}
+
+		//debugInfo = arguments.join(",");
+		console.log(arguments);
+
+		return;
+	}
+	/*}}}*/
 	/*}}}*/
 }
 
@@ -60,5 +103,7 @@ var swan = function () {
 var swan = new swan();
 
 var G = swan.g;
+var D = swan.debug;
+var M = swan.alertMsg;
 /*}}}*/
 

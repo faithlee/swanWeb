@@ -39,9 +39,18 @@ function SwanIndex() {
 	this.init = function()
 	{
 		$(document).ready(function() {
-			console.log('public/js/index.js');
+			D('debug test', 'public/js/index.js')	
+			var content1 = M('', 'Your monthly traffic is reaching limit');
+			var content2 = M('Success', 'The page has been added');
+			var content3 = M('Info', 'You have 198 unread messages');
+			var content4 = M('Error', 'The daily cronjob has failed');
+			$('.page-content').prepend(content1);
+			$('.page-content').prepend(content2)
+			$('.page-content').prepend(content3)
+			$('.page-content').prepend(content4)
 		});	
 	}
+
 	// }}}
 	/*{{{ 分页功能*/
 	/**
