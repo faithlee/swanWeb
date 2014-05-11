@@ -13,7 +13,7 @@
  
 /**
 +------------------------------------------------------------------------------
-* 设备
+* device
 +------------------------------------------------------------------------------
 * 
 * @package 
@@ -38,21 +38,53 @@ function SwanDevice() {
 	 */
 	this.init = function()
 	{
-		$('#deviceBtn').bind('click', __this.addDo);
+		__this.loadIndex();
 
-		$('#updateDeviceBtn').bind('click', __this.deviceUpdate);
-		
-		$('.deleteDeviceBtn').bind('click', __this.deviceDelete);
+		$('#deviceBtn').bind('click', __this.addData);
+
+		$('#updateDeviceBtn').bind('click', __this.update);
 	}
+
 	// }}}
-	/*{{{添加设备请求*/
+	/*{{{show device dataTable*/
+
 	/**
-	 * 添加设备请求
+	 * show device dataTable   
 	 */
-	this.addDo = function() {
-		//@todo 对数据验证
-		
-		//异步提交数据
+	this.loadIndex = function () {
+		$(document).ready(function() {
+			$('#device_table').dataTable({
+				'ajax': {
+					'processing': true,
+					'serverSide': true,
+					'url': '/device_indexList',
+					'type' : 'POST',
+				},
+				'columns': [
+					{'data': 'device_id'},
+					{'data': 'device_name'},
+					{'data': 'host_name'},
+					{'data': 'device_display_name'},
+					{'data': function (obj) {
+						var editHtml = '<a href="javascript:;" onClick="swanIndex.mainPage(\' + obj.device_id + \')">Edit</a>';
+						return editHtml;
+					}},
+					{'data': function(obj) {
+						var delHtml = '<a device_id="' + obj.device_id + '" href="javascript:;" onClick="' + __this.__thisName + '.delete(this)">Delete</a>';
+						
+						return delHtml;	
+					}}
+				]
+			});
+		});
+	}
+
+	/*}}}*/
+	/*{{{ajax add device*/
+	/**
+	 * ajax add device
+	 */
+	this.addData = function() {
 		$.ajax({
 			url : gPrefixUrl + 'device_doAdd',
 			type : 'post',
@@ -63,12 +95,13 @@ function SwanDevice() {
 		});
 	}
 	/*}}}*/
-	/*{{{更新设备数据*/
+	/*{{{ajax update device*/
+
 	/**
-	 * @todo 更新设备数据  
+	 * ajax update device  
 	 */
-	this.deviceUpdate = function() {
-		var deviceId = $(this).attr('deviceId');
+	this.update = function() {
+		var deviceId = $(this).attr('device_id');
 
 		$.ajax({
 			url : gPrefixUrl + 'device_doUpdate',
@@ -79,13 +112,15 @@ function SwanDevice() {
 			}
 		});
 	}
+
 	/*}}}*/
-	/*{{{删除设备数据*/
+	/*{{{ajax delete device*/
+
 	/**
-	 * @todo 删除设备数据
+	 * ajax delete device
 	 */
-	this.deviceDelete = function() {
-		var deviceId = $(this).attr('deviceId');
+	this.delete = function(obj) {
+		var deviceId = $(obj).attr('device_id');
 
 		$.ajax({
 			url : gPrefixUrl + 'device_doDelete',
@@ -96,6 +131,7 @@ function SwanDevice() {
 			}
 		});
 	}
+
 	/*}}}*/
 	// }}}
 }

@@ -40,6 +40,7 @@ app.get('/', routes.index);
 
 //device
 app.get('/device', device.index);
+app.post('/device_indexList', device.indexList);
 
 app.get('/device_add', device.add);
 app.post('/device_doAdd', device.addData);
@@ -60,7 +61,7 @@ app.post('/madapter_doUpdate', madapter.updateData);
 
 app.get('/madapter_doDelete', madapter.delelteData);
 
-//@todo madapter_attr  @todo 属性有问题，暂时不解决
+//@todo madapter_attr
 //app.get('/monitor_attr', mAttribute.index);
 
 //@todo madapter_metric
@@ -72,4 +73,3 @@ app.get('/madapter_doDelete', madapter.delelteData);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-

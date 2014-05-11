@@ -23,7 +23,7 @@
 +------------------------------------------------------------------------------
 */
 
-function SwanMonitor() {
+function SwanMAdapter() {
 	ModuleBase.call(this);
 	var __this = this;
 
@@ -38,19 +38,23 @@ function SwanMonitor() {
 	 */
 	this.init = function()
 	{
-		$('#monitorBtn').bind('click', __this.doAddData);
+		__this.loadIndexList();
 
-		$('#updateBtn').bind('click', __this.madapterUpdate);
+		$('#monitorBtn').bind('click', __this.add);
+
+		$('#updateBtn').on('click', __this.update);
 		
-		$('.deleteBtn').bind('click', __this.madapterDelete);
+		$('.delete_btn').on('click', __this.delete);
 
 		$('.m_attr_lightbox').bind('click', __this.showAttribute);
-
-		__this.loadIndexList();
 	}
 
 	// }}}
-	/*{{{*/
+	/*{{{show madapter dataTable*/
+	
+	/**
+	 * show madapter dataTable
+	 */
 	this.loadIndexList = function(){
 		$(document).ready(function() {
 			$('#madapter_list').dataTable( {
@@ -66,23 +70,31 @@ function SwanMonitor() {
 					{'data':'steps'},
 					{'data':'madapter_display_name'},
 					{'data': function (obj) {
-						console.info(obj);
-						return "debug";
+						var detailHtml = [];
+						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">attribute</a>');
+						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">metric</a>');
+						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">achives</a>');
+
+						return detailHtml.join(' |&nbsp;');
 					}},
 					{'data': function (obj) {
-						return "debug1";
+						var editHtml = [];
+						editHtml.push('<a madapter_id="' + obj.madapter_id + '" href="javascript:;" onclick="swanIndex.mainPage(\"monitor_update\")">Edit</a>')
+						editHtml.push('<a madapter_id="' + obj.madapter_id + '" href="javascript:;" onClick="' + __this.__thisName + '.delete(this);">Delete</a>')
+						return editHtml.join('&nbsp;&nbsp;');
 					}}
 				]
 			} );
 		} );		
 	}
+
 	/*}}}*/
 	/*{{{add madapter*/
 
 	/**
 	 * add madapter
 	 */
-	this.doAddData = function() {
+	this.add = function() {
 		//todo 对数据验证
 			
 		//异步提交数据
@@ -102,8 +114,8 @@ function SwanMonitor() {
 	/**
 	 * update madapter  
 	 */
-	this.madapterUpdate = function() {
-		var monitorId = $(this).attr('monitorId');
+	this.update = function() {
+		var monitorId = $(this).attr('madapter_id');
 
 		$.ajax({
 			url : gPrefixUrl + 'madapter_doUpdate',
@@ -121,13 +133,13 @@ function SwanMonitor() {
 	/**
 	 * delete madapter
 	 */
-	this.madpaterDelete = function() {
-		var monitorId = $(this).attr('monitorId');
+	this.delete = function(obj) {
+		var madapter_id = $(obj).attr('madapter_id');
 
 		$.ajax({
 			url : gPrefixUrl + 'madapter_doDelete',
 			type : 'get',
-			data : {mid : monitorId},
+			data : {mid : madapter_id},
 			success : function(data) {
 				console.log(data);
 			}

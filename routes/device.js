@@ -5,36 +5,62 @@
 var http = require('http');
 var common = require('../lib/common')
 
-/*{{{设备管理 */
+/*{{{show device page*/
+
 /**
- * 设备管理 
+ * show device page
  */
-var data = {title: '设备管理', content: '', keyword: ''};
 exports.index = function(req, res) {
+	var data = {title: '设备管理', content: '', keyword: ''};
+
+	res.render('device', data);
+}
+
+/*}}}*/
+/*{{{show device dataTable*/
+
+/**
+ * show device dataTable
+ */
+exports.indexList = function (req, res) {
+	var outData = param = {};
+	param.start = req.body.start;
+	param.length = req.body.length;
+
 	var options = {
 		module: 'user',
 		action: 'device.json',
+		params: param,
 		success: function(chunk) {
-			var result = JSON.parse(chunk);
-			data.data = result.data.result;
+			var results = JSON.parse(chunk);
+			outData.draw = 1;
+			outData.recordsTotal = results.data.count;
+			outData.recordsFiltered = results.data.count;
+			outData.data = {};
+			outData.data = results.data.result;
 
-			res.render('device', data);
+			res.send(outData);
 		}
 	};
+
 	common.handleData(res, options);
-};
+}
+
 /*}}}*/
-// {{{设备管理添加
+// {{{ add device
+
 /**
- * 设备管理添加
+ * add device
  */
 exports.add = function(req, res) {
 	res.render('device_add', {title : '设备添加', keyword : '设备添加'});
 }
+
 // }}}
-/*{{{处理添加的数据*/
+/*{{{add device data*/
+
 /**
- * 处理添加的数据
+ * add device data 
  */
 exports.addData = function (req, res) {
 	var params = {};
@@ -44,28 +70,32 @@ exports.addData = function (req, res) {
 
 	var options = {
 		module: 'user',
-		action: 'device.add',	
+		action: 'device.add',
 		params: params,
 		success: function(chunk) {
 			res.send(chunk);
 		}
-	}	
+	}
 
 	common.handleData(res, options);
-}	
+}
+
 /*}}}*/
-/*{{{设备管理修改*/
+/*{{{update device*/
+
 /**
- * 设备管理修改
+ * update device
  */
 exports.update = function(req, res) {
 	res.render('device_update', {title : '设备管理修改', keyword : '', content : ''});
 
 }
+
 /*}}}*/
-/*{{{更新设备信息*/
+/*{{{update device data*/
+
 /**
- * @todo 更新设备信息 
+ * update device data
  */
 exports.updateData = function (req, res) {
 	var params = {};
@@ -85,24 +115,27 @@ exports.updateData = function (req, res) {
 
 	common.handleData(res, options);
 }
+
 /*}}}*/
-/*{{{删除设备信息*/
+/*{{{delete device data*/
+
 /**
- * 删除设备信息 
+ * delete device data
  */
 exports.deleteData = function (req, res) {
-	var params = {};
-	params.did = req.query.did;
-	
+	var param = {};
+	param.device_id = req.query.did;
+
 	var options = {
 		module : 'user',
 		action : 'device.del',
-		params : params,
+		params : param,
 		success : function (chunk) {
-			console.log(chunk);
+			res.send(JSON.parse(chunk));
 		}
 	}
-	
+
 	common.handleData(res, options);
 }
+
 /*}}}*/

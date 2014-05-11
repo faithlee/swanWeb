@@ -4,29 +4,16 @@
 var common = require('../lib/common');
 
 /*{{{module of madapter_index*/
+
 /**
  * module of madapter_index
  */
 exports.index = function(req, res) {
 	var data = { title: 'Express' , keyword: 'Express Keyword', content: 'Express Content'};
+
 	res.render('madapter', data);
-	
-//	var options = {
-//		module : 'dev',
-//		action : 'madapter.json',
-//		success : function (chunk) {
-//			var results = JSON.parse(chunk);
-//			data.data = results.data.result;
-//			data.draw = 1;
-//			data.recordsTotal = data.data.length;
-//			data.recordsFiltered = data.data.length;
-//
-//			res.render('madapter', data);
-//		}
-//	}
-//
-//	common.handleData(res, options);
 };
+
 /*}}}*/
 /*{{{ajax request index list
 */
@@ -35,15 +22,19 @@ exports.index = function(req, res) {
  * ajax request index list
  */
 exports.indexList = function(req, res) {
-	var outData = {};
+	var outData = param ={};
+	param.start = req.body.start;
+	param.length = req.body.length;
+
 	var options = {
 		module : 'dev',
 		action : 'madapter.json',
+		params : param,
 		success : function (chunk) {
 			var results = JSON.parse(chunk);
-			outData.draw = 1;
-			outData.recordsTotal = results.data.result.length;
-			outData.recordsFiltered = results.data.result.length;
+			outData.draw = parseInt(param.page);
+			outData.recordsTotal = results.data.count;
+			outData.recordsFiltered = results.data.count;
 			outData.data = [];
 			outData.data = results.data.result;
 						
@@ -130,7 +121,7 @@ exports.updateData = function (req, res) {
  */
 exports.delelteData = function (req, res) {
 	var params = {};
-	params.mid = req.query.mid;
+	params.madapter_id = req.query.mid;
 
 	var options = {
 		module : 'dev',
