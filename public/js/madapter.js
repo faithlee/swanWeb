@@ -38,8 +38,6 @@ function SwanMAdapter() {
 	 */
 	this.init = function()
 	{
-		__this.loadIndexList();
-
 		$('#monitorBtn').bind('click', __this.add);
 
 		$('#updateBtn').on('click', __this.update);

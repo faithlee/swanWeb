@@ -38,8 +38,6 @@ function SwanDevice() {
 	 */
 	this.init = function()
 	{
-		__this.loadIndex();
-
 		$('#deviceBtn').bind('click', __this.addData);
 
 		$('#updateDeviceBtn').bind('click', __this.update);
@@ -90,7 +88,16 @@ function SwanDevice() {
 			type : 'post',
 			data : $('#deviceForm').serialize(),
 			success : function (data) {
-				console.log(data);
+				var result = eval('(' + data + ')');
+
+				if (10000 == data.code) {
+					var content = M('Success', result.msg)	
+				} else {
+					var content = M('Error', result.msg);
+				}
+				
+				$('.page-content').prepend(content)
+				
 			}
 		});
 	}

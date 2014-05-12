@@ -72,7 +72,7 @@ var swan = function () {
 		msgHtml.push('<div class="portlet-body" style="display: block;">');
 		msgHtml.push('<div class="alert' + className + '">');
 		msgHtml.push('<button data-dismiss="alert" class="close"></button>');
-		msgHtml.push('<strong>' + msg + '!</strong>' + content + '.');
+		msgHtml.push('<strong>' + msg + '</strong>' + content);
 		msgHtml.push('</div></div></div>');
 			
 		return msgHtml.join('');
