@@ -59,7 +59,11 @@ function SwanDevice() {
 					'type' : 'POST',
 				},
 				'columns': [
-					{'data': 'device_id'},
+					{'data': function(obj) {
+						 var checkBox = '<div class="checker"><span><input type="checkbox" value="' + obj.device_id + '" class="checkboxes" name="device_id[]"></span></div>';	
+
+						return checkBox;
+					}},
 					{'data': 'device_name'},
 					{'data': 'host_name'},
 					{'data': 'device_display_name'},
@@ -74,6 +78,10 @@ function SwanDevice() {
 					}}
 				]
 			});
+			
+			jQuery('#device_table_wrapper .dataTables_filter input').addClass("m-wrap small"); 
+	        jQuery('#device_table_wrapper .dataTables_length select').addClass("m-wrap small"); 
+			jQuery('#device_table_wrapper .dataTables_length select').select2();
 		});
 	}
 
@@ -140,5 +148,8 @@ function SwanDevice() {
 	}
 
 	/*}}}*/
+	this.checkBox = function(obj) {
+		return '<div class="checker"><span><input type="checkbox" value="' + id + '" class="checkboxes" name="device_id[]"></span></div>';
+	}
 	// }}}
 }
