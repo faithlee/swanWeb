@@ -52,6 +52,7 @@ function SwanDevice() {
 	this.loadIndex = function () {
 		$(document).ready(function() {
 			$('#device_table').dataTable({
+				'ordering':false,
 				'ajax': {
 					'processing': true,
 					'serverSide': true,
@@ -82,11 +83,41 @@ function SwanDevice() {
 			jQuery('#device_table_wrapper .dataTables_filter input').addClass("m-wrap small"); 
 	        jQuery('#device_table_wrapper .dataTables_length select').addClass("m-wrap small"); 
 			jQuery('#device_table_wrapper .dataTables_length select').select2();
+            jQuery('#device_table .group-checkable').change(function () {
+                var set = jQuery(this).attr("data-set");
+                var checked = jQuery(this).is(":checked");
+				if (checked) {
+					$(this).parent().addClass('checked');	
+				} else {
+					$(this).parent().removeClass('checked');	
+				}
+                jQuery(set).each(function () {
+                    if (checked) {
+                        $(this).attr("checked", true);
+						$(this).parent().attr("class", 'checked');
+                    } else {
+                        $(this).attr("checked", false);
+						$(this).parent().attr("class", '');
+                    }
+                });
+                jQuery.uniform.update(set);
+            });
+			$('#device_table_wrapper .checkboxes').live('change', function(){
+				var checked = jQuery(this).is(":checked");
+				if (checked) {
+					$(this).attr("checked", true);
+					$(this).parent().attr("class", 'checked');
+				} else {
+					$(this).attr("checked", false);
+					$(this).parent().attr("class", '');
+				}
+			});
 		});
 	}
 
 	/*}}}*/
 	/*{{{ajax add device*/
+
 	/**
 	 * ajax add device
 	 */
@@ -109,6 +140,7 @@ function SwanDevice() {
 			}
 		});
 	}
+
 	/*}}}*/
 	/*{{{ajax update device*/
 

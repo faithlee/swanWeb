@@ -39,6 +39,7 @@ exports.indexList = function (req, res) {
 			outData.data = {};
 			outData.data = results.data.result;
 
+			console.log(outData)
 			res.send(outData);
 		}
 	};
