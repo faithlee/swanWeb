@@ -2,6 +2,7 @@
  * Madapter
  */
 var common = require('../lib/common');
+var navHeader = {className: '监控器管理', subClassName: '监控器列表'};
 
 /*{{{module of madapter_index*/
 
@@ -9,9 +10,7 @@ var common = require('../lib/common');
  * module of madapter_index
  */
 exports.index = function(req, res) {
-	var data = { title: 'Express' , keyword: 'Express Keyword', content: 'Express Content'};
-
-	res.render('madapter', data);
+	res.render('madapter', navHeader);
 };
 
 /*}}}*/

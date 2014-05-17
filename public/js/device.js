@@ -79,39 +79,55 @@ function SwanDevice() {
 					}}
 				]
 			});
-			
-			jQuery('#device_table_wrapper .dataTables_filter input').addClass("m-wrap small"); 
-	        jQuery('#device_table_wrapper .dataTables_length select').addClass("m-wrap small"); 
-			jQuery('#device_table_wrapper .dataTables_length select').select2();
+						
+			//全选
             jQuery('#device_table .group-checkable').change(function () {
                 var set = jQuery(this).attr("data-set");
                 var checked = jQuery(this).is(":checked");
 				if (checked) {
-					$(this).parent().addClass('checked');	
+					$(this).parent('span').addClass('checked');	
 				} else {
-					$(this).parent().removeClass('checked');	
+					$(this).parent('span').removeClass('checked');	
 				}
+
                 jQuery(set).each(function () {
                     if (checked) {
                         $(this).attr("checked", true);
-						$(this).parent().attr("class", 'checked');
+						$(this).parent('span').attr("class", 'checked');
                     } else {
                         $(this).attr("checked", false);
-						$(this).parent().attr("class", '');
+						$(this).parent('span').attr("class", '');
                     }
                 });
+
                 jQuery.uniform.update(set);
             });
+
+			//单选
 			$('#device_table_wrapper .checkboxes').live('change', function(){
+				var allBox = jQuery('.group-checkable');
 				var checked = jQuery(this).is(":checked");
+				var total = jQuery('#device_table .checkboxes').length;
+
 				if (checked) {
 					$(this).attr("checked", true);
-					$(this).parent().attr("class", 'checked');
+					$(this).parent('span').attr("class", 'checked');
 				} else {
 					$(this).attr("checked", false);
-					$(this).parent().attr("class", '');
+					$(this).parent('span').attr("class", '');
+				}
+				
+				if (total == jQuery('input:checked').length) {
+					allBox.parent('span').addClass('checked');
+				} else {
+					allBox.parent('span').removeClass('checked');
 				}
 			});
+
+			//分页
+			jQuery('#device_table_wrapper .dataTables_filter input').addClass("m-wrap small"); 
+	        jQuery('#device_table_wrapper .dataTables_length select').addClass("m-wrap small"); 
+			jQuery('#device_table_wrapper .dataTables_length select').select2();
 		});
 	}
 
@@ -134,9 +150,12 @@ function SwanDevice() {
 				} else {
 					var content = M('Error', result.msg);
 				}
-				
-				$('.page-content').prepend(content)
-				
+					
+				//$('.page-content').prepend(content)
+
+//				setTimeout(function() {
+//					jQuery('.alert').remove();
+//				}, 3000);
 			}
 		});
 	}

@@ -57,7 +57,7 @@ var swan = function () {
 	/**
 	 * alert message
 	 */
-	this.alertMsg = function (status, content) {
+	this.alertMsg = function (status, content, time = 3000) {
 		//var statusArr = ['warning', 'success', 'info', 'error'];
 		var msgHtml = [];
 		var status, className, msg; 
@@ -72,10 +72,17 @@ var swan = function () {
 		msgHtml.push('<div class="portlet-body" style="display: block;">');
 		msgHtml.push('<div class="alert' + className + '">');
 		msgHtml.push('<button data-dismiss="alert" class="close"></button>');
-		msgHtml.push('<strong>' + msg + '</strong>' + content);
+		msgHtml.push('<strong>' + msg + '</strong> ' + content);
 		msgHtml.push('</div></div></div>');
 			
-		return msgHtml.join('');
+		jQuery('.page-content').prepend(msgHtml.join(''));
+		
+		setTimeout(function () {
+			jQuery('.alert').fadeOut("slow")
+			//jQuery('.alert').remove();	
+		}, time)
+
+		return;
 	}
 
 	/*}}}*/

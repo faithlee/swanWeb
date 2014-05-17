@@ -58,22 +58,32 @@ function SwanMAdapter() {
 			$('#madapter_list').dataTable( {
 				"processing": false,
 				"serverSide": true,
+				"ordering": false,
 				"ajax": {
 					"url": gPrefixUrl + 'madapter_indexList',
 					"type": "POST"
 				},
 				"columns":[ 
-					{'data':'madapter_id'},
+					{'data': function (obj) {
+						var checkBox = '<div class="checker"><span>';
+						checkBox += '<input class="checkboxes" type="checkbox" value="' + obj.madapter_id + '">';
+						checkBox += '</span></div>';
+
+						return checkBox; 
+					}},
 					{'data':'madapter_name'},
 					{'data':'steps'},
 					{'data':'madapter_display_name'},
 					{'data': function (obj) {
 						var detailHtml = [];
+						//class="btn mini green-stripe"
 						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">attribute</a>');
+						//class="btn mini blue-stripe"
 						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">metric</a>');
+						//class="btn mini red-stripe"
 						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">achives</a>');
 
-						return detailHtml.join(' |&nbsp;');
+						return detailHtml.join('&nbsp;');
 					}},
 					{'data': function (obj) {
 						var editHtml = [];
@@ -82,8 +92,55 @@ function SwanMAdapter() {
 						return editHtml.join('&nbsp;&nbsp;');
 					}}
 				]
-			} );
-		} );		
+			});
+			
+			//全选
+			jQuery('#madapter_list .group-checkable').change(function () {
+                var set = jQuery(this).attr("data-set");
+                var checked = jQuery(this).is(":checked");
+				if (checked) {
+					jQuery(this).parent().addClass('checked');
+				} else {
+					jQuery(this).parent().removeClass('checked');
+				}
+
+                jQuery(set).each(function () {
+                    if (checked) {
+						$(this).parent('span').addClass('checked')
+                        $(this).attr("checked", true);
+                    } else {
+						$(this).parent('span').removeClass('checked')
+                        $(this).attr("checked", false);
+                    }   
+                }); 
+
+                jQuery.uniform.update(set);
+            });			
+			
+			//单选
+			jQuery('#madapter_list .checkboxes').live('change', function(){
+				var allBox = jQuery('.group-checkable');
+				var idChecked = $(this).attr('checked');
+				var total = jQuery('#madapter_list .checkboxes').length;
+
+				if (idChecked) {
+					$(this).parent('span').addClass('checked');
+				} else {
+					$(this).parent('span').removeClass('checked');
+				}
+				
+				//是否全选
+				if (jQuery('input:checked').length == total) {
+					allBox.parent('span').addClass('checked');
+				} else {
+					allBox.parent('span').removeClass('checked');
+				}
+			});
+
+			jQuery('#madapter_list_wrapper .dataTables_filter input').addClass("m-wrap medium");
+			jQuery('#madapter_list_wrapper .dataTables_length select').addClass("m-wrap small");
+			jQuery('#madapter_list_wrapper .dataTables_length select').select2();
+		});		
 	}
 
 	/*}}}*/

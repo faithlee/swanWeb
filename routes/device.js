@@ -4,6 +4,7 @@
 
 var http = require('http');
 var common = require('../lib/common')
+var navHeader = {className: '设备管理', subClassName: '设备列表', grandClassName : ''};
 
 /*{{{show device page*/
 
@@ -11,9 +12,7 @@ var common = require('../lib/common')
  * show device page
  */
 exports.index = function(req, res) {
-	var data = {title: '设备管理', content: '', keyword: ''};
-
-	res.render('device', data);
+	res.render('device', navHeader);
 }
 
 /*}}}*/
@@ -39,7 +38,6 @@ exports.indexList = function (req, res) {
 			outData.data = {};
 			outData.data = results.data.result;
 
-			console.log(outData)
 			res.send(outData);
 		}
 	};
