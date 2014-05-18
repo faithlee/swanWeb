@@ -65,7 +65,6 @@ app.get('/madapter_doDelete', madapter.delelteData);
 app.get('/mAdapter_attr', mAdapterAttr.index);
 app.post('/mAdapterAttr_index', mAdapterAttr.indexList);
 
-
 //@todo madapter_metric
 
 //@todo madapter_archive
