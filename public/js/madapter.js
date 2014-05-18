@@ -23,7 +23,7 @@
 +------------------------------------------------------------------------------
 */
 
-function SwanMAdapter() {
+function SwanmAdapter() {
 	ModuleBase.call(this);
 	var __this = this;
 
@@ -76,18 +76,16 @@ function SwanMAdapter() {
 					{'data':'madapter_display_name'},
 					{'data': function (obj) {
 						var detailHtml = [];
-						//class="btn mini green-stripe"
-						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">attribute</a>');
-						//class="btn mini blue-stripe"
-						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">metric</a>');
-						//class="btn mini red-stripe"
-						detailHtml.push('<a attr_id="' + obj.madapter_id + '" href="javascript:;">achives</a>');
+
+						detailHtml.push('<a class="btn mini green-stripe" attr_id="' + obj.madapter_id + '" onClick="swanIndex.mainPage(\'/madapter_attr?madapter_id=' + obj.madapter_id + '\')" href="javascript:;">attribute</a>');
+						detailHtml.push('<a class="btn mini blue-stripe" attr_id="' + obj.madapter_id + '" href="javascript:;">metric</a>');
+						detailHtml.push('<a class="btn mini red-stripe" attr_id="' + obj.madapter_id + '" href="javascript:;">achives</a>');
 
 						return detailHtml.join('&nbsp;');
 					}},
 					{'data': function (obj) {
 						var editHtml = [];
-						editHtml.push('<a madapter_id="' + obj.madapter_id + '" href="javascript:;" onclick="swanIndex.mainPage(\"monitor_update\")">Edit</a>')
+						editHtml.push('<a madapter_id="' + obj.madapter_id + '" href="javascript:;" onClick="swanIndex.mainPage(\"monitor_update\")">Edit</a>')
 						editHtml.push('<a madapter_id="' + obj.madapter_id + '" href="javascript:;" onClick="' + __this.__thisName + '.delete(this);">Delete</a>')
 						return editHtml.join('&nbsp;&nbsp;');
 					}}
@@ -170,7 +168,7 @@ function SwanMAdapter() {
 	 * update madapter  
 	 */
 	this.update = function() {
-		var monitorId = $(this).attr('madapter_id');
+		var madapterId = $(this).attr('madapter_id');
 
 		$.ajax({
 			url : gPrefixUrl + 'madapter_doUpdate',

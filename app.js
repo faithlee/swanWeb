@@ -9,7 +9,7 @@ var user = require('./routes/user');
 
 var device = require('./routes/device');
 var madapter = require('./routes/madapter');
-var mAttribute = require('./routes/mAttribute');
+var mAdapterAttr = require('./routes/mAdapterAttr');
 
 var http = require('http');
 var path = require('path');
@@ -61,8 +61,10 @@ app.post('/madapter_doUpdate', madapter.updateData);
 
 app.get('/madapter_doDelete', madapter.delelteData);
 
-//@todo madapter_attr
-//app.get('/monitor_attr', mAttribute.index);
+//mAdapter_attr
+app.get('/mAdapter_attr', mAdapterAttr.index);
+app.post('/mAdapterAttr_index', mAdapterAttr.indexList);
+
 
 //@todo madapter_metric
 

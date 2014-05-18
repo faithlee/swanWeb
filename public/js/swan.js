@@ -91,7 +91,7 @@ var swan = function () {
 	/**
 	 * print debug info  
 	 */
-	this.debug = function () {
+	this.Debug = function () {
 		//var debugInfo;
 		if (!arguments.length) {
 			return;	
@@ -110,7 +110,7 @@ var swan = function () {
 var swan = new swan();
 
 var G = swan.g;
-var D = swan.debug;
+var D = swan.Debug;
 var M = swan.alertMsg;
 /*}}}*/
 

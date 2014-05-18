@@ -60,11 +60,11 @@ function ModuleBase()
 	this.mainPage = function (url)
 	{
 		$.ajax({
-		   type: "GET",
-		   url: url,
-		   success: function(data){
+			type: "GET",
+			url: url,
+			success: function(data){
 				$('.page-content').html(data);
-		   }
+			},
 		});
 	}
 
