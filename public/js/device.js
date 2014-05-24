@@ -69,6 +69,7 @@ function SwanDevice() {
 					{'data': 'host_name'},
 					{'data': 'device_display_name'},
 					{'data': function (obj) {
+						//todo 编辑的链接有问题
 						var editHtml = '<a href="javascript:;" onClick="swanIndex.mainPage(\' + obj.device_id + \')">Edit</a>';
 						return editHtml;
 					}},
@@ -138,6 +139,10 @@ function SwanDevice() {
 	 * validate device_add form
 	 */
 	this.initAdd = function () {
+		var alert1 = '首个字符是字母，由数字、字母、下划线组成，不少于6个字符!';
+		var alert2= '请输入设备主机名!';
+		var alert3 = '请设置正确的心跳线超时时间!';
+
 		$('#deviceForm').validate({
 			debug: true,
 			errorElement: 'span',
@@ -146,15 +151,19 @@ function SwanDevice() {
 			//忽略的字段
 			ignore: '',
 			rules:  {
-				device_name: {required: true, minlength: 6},
-				host_name: {required: true, validHost: true}
+				device_name: {required: true, validName: true},
+				host_name: {required: true, validHost: true},
+				heartbeat_time: {required: true, validTime: true}
 			},
 			messages: {
 				device_name: {
-					required: 'Please enter device name!'
+					required: alert1 
 				},
 				host_name: {
-					required: 'Please enter host name!'
+					required: alert2 
+				},
+				heartbeat_time: {
+					required: alert3
 				}
 			},
 			//display error alert on form submit
@@ -181,21 +190,29 @@ function SwanDevice() {
 				label.addClass('valid').addClass('help-inline ok')
 				.closest('.control-group').removeClass('error').addClass('success'); 
 			},
-			submitHandler: function () {
-				M('Error', 'adasdasd');
-				//form.submit();
-			}
+			//submitHandler: function () {
+			//	M('Error', 'adasdasd');
+			//	//form.submit();
+			//}
 		});
 		
+		//验证设备名
+		$.validator.addMethod('validName', function (value, element) {
+			var pattern = /^[a-zA-Z][\w|\d|_]{5,}/;
+
+			return this.optional(element) || pattern.test(value);
+		}, alert1);
+
 		//验证设备IP
 		$.validator.addMethod("validHost", function(value, element) {
 			var ip = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 
 			  return this.optional(element) || ip.test(value);
-		}, "Please specify the correct IP for your Device IP");
+		}, alert2 );
 
-	
-		//return false;
+		$.validator.addMethod('validTime', function (value, element) {
+			return this.optional(element) || value.match(/^\d+$/);
+		}, alert3);
 	},
 
 	/*}}}*/

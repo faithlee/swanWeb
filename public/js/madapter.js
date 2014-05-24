@@ -38,7 +38,7 @@ function SwanmAdapter() {
 	 */
 	this.init = function()
 	{
-		$('#monitorBtn').bind('click', __this.add);
+		$('#mAdapter_btn').bind('click', __this.addData);
 
 		$('#updateBtn').on('click', __this.update);
 		
@@ -142,23 +142,124 @@ function SwanmAdapter() {
 	}
 
 	/*}}}*/
+	/*{{{validate form */
+	
+	/**
+	 * validate form 
+	 */
+	this.initAdd = function () {
+		var alert1 = '名称首个字符必须是字母，由字母、数字、下划线组成，不能少于6个字符!';
+		var alert2 = '请输入监控适配器储存正确的时间间隔!';
+		var alert3 = '请选择一种储存类型!';
+		var alert4 = '请选择适配器类型!';
+
+		jQuery('#mAdapterForm').validate({
+			debug: true,
+			errorElement: 'span',
+			errorClass: 'help-inline',
+			focusIvalid: false,
+			ignore: '',
+			rules: {
+				name: {validName: true, required: true},
+				steps: {validSteps: true, required: true},
+				"store_type[]": {required: true, minlength: 1},
+				madapter_type: {required: true},
+			},	
+			messages: {
+				name: {
+					required: alert1
+				},
+				steps: {
+					required: alert2
+				},
+				"store_type[]": {
+					required: alert3,
+					minlength: jQuery.format("请至少选择{0}种储存类型!")
+				},
+				madapter_type: {
+					required: alert4	
+				}
+			},
+			//处理radio及checkbox表单
+			errorPlacement: function (error, element) {
+				if (element.attr("name") == "madapter_type") {
+					error.addClass("no-left-padding").insertAfter("#madapter_type_error");
+				} else if (element.attr("name") == "store_type[]") { 
+					error.addClass("no-left-padding").insertAfter("#store_type_error");
+				} else {
+					error.insertAfter(element); 
+				}
+			},
+			invalidHandler: function (event, validator) {
+				var errors = validator.numberOfInvalids();
+				if (errors) {
+					M('Error', 'You have some form errors. Please check below. ');
+				}
+			},
+			highlight: function (element) {
+				$(element).closest('.help-inline').removeClass('ok');
+				$(element).closest('.control-group').removeClass('success').addClass('error');
+			},
+			unhighlight: function (element) {
+				$(element).closest('.constrol-group').removeClass('error');
+			},
+			success: function (label) {
+				//radio及checkbox处理
+				if (label.attr('for') == 'store_type[]' || label.attr('for') == 'madapter_type') {
+					label.closest('.control-group').removeClass('error').addClass('success');
+					label.remove(); 				
+				} else {
+					label.addClass('valid').addClass('help-inline ok')
+					.closest('.control-group').removeClass('error').addClass('success'); 
+				}
+			}	
+		});
+		
+		//validate name
+		$.validator.addMethod('validName', function(value, element) {
+			var pattern = /^\w[\w|\d|-]{5,}/;
+			
+			return this.optional(element) || pattern.test(value);
+		}, alert1);
+		
+		//validate steps 
+		$.validator.addMethod('validSteps', function (value, element) {
+			var pattern = /^\d+$/;
+			return this.optional(element) || pattern.test(value);
+		}, alert2);
+	},
+
+	/*}}}*/
 	/*{{{add madapter*/
 
 	/**
 	 * add madapter
 	 */
-	this.add = function() {
+	this.addData = function() {
 		//todo 对数据验证
-			
-		//异步提交数据
-		$.ajax({
-			url : gPrefixUrl + 'madapter_doAdd',
-			type : 'post',
-			data : $('#monitorForm').serialize(),
-			success : function (data) {
-				console.log(data);
-			}
-		});
+		var _form = $('#mAdapterForm');
+		if (_form.valid()) {
+			$.ajax({
+				url : gPrefixUrl + 'madapter_doAdd',
+				type : 'post',
+				data : _form.serialize(),
+				success : function (data) {
+					var result = eval('(' + data + ')');
+					if (10000 == parseInt(result.code)) {
+						M('Success', result.msg);
+
+						var el = $('.tab-content');
+						App.blockUI(el);
+						setTimeout(function() {
+							App.unblockUI(el);
+						}, 1000);
+					} else {
+					
+					}
+					console.log(data);
+				}
+			});
+		}
 	}
 
 	/*}}}*/
@@ -167,7 +268,7 @@ function SwanmAdapter() {
 	/**
 	 * update madapter  
 	 */
-	this.update = function() {
+	this.initUpdate = function() {
 		var madapterId = $(this).attr('madapter_id');
 
 		$.ajax({

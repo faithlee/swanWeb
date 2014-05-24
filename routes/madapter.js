@@ -1,7 +1,10 @@
 /*
  * Madapter
  */
+var base = require('../lib/base');
 var common = require('../lib/common');
+
+var D = base.Debug;
 var navHeader = {className: '监控器管理', subClassName: '监控器列表'};
 
 /*{{{module of madapter_index*/
@@ -62,9 +65,18 @@ exports.add = function(req, res) {
  */
 exports.addData = function (req, res) {
 	var params = {};
+	var storeType = 0;
 	params.name = req.body.name;
 	params.steps = req.body.steps;
+	params.madapter_type = req.body.madapter_type;
 	params.display_name = req.body.display_name;
+	
+	//处理复选框
+	for (var x in req.body.store_type) {
+		 storeType += parseInt(req.body.store_type[x]);	
+	}
+
+	params.store_type = storeType;
 
 	var options = {
 		module : 'dev',

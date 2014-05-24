@@ -65,8 +65,9 @@ exports.add = function(req, res) {
 exports.addData = function (req, res) {
 	var params = {};
 	params.name = req.body.device_name;
-	params.display_name = req.body.display_name;
 	params.host_name = req.body.host_name;
+	params.heartbeat_time = req.body.heartbeat_time;
+	params.display_name = req.body.display_name;
 
 	var options = {
 		module: 'user',

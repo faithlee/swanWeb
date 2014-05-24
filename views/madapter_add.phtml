@@ -1,3 +1,4 @@
+<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <!-- BEGIN PAGE CONTAINER-->
 <!-- BEGIN PAGE HEADER-->
 <div class="row-fluid">
@@ -37,11 +38,11 @@
 						<div class="tab-content">
 							<div class="tab-pane active" id="portlet_tab1">
 								<!-- BEGIN FORM-->
-								<form action="/madapter_doAdd" method="post" class="form-horizontal" id="monitorForm">
+								<form action="#" method="post" class="form-horizontal" id="mAdapterForm">
 									<div class="control-group">
-										<label class="control-label">监管器名称<span class="required">*</span></label>
+										<label class="control-label">名称<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="name" placeholder="monitor name" class="m-wrap medium" />
+											<input type="text" name="name" placeholder="mAdapter name" class="m-wrap medium" />
 										</div>
 									</div>
 									<div class="control-group">
@@ -51,13 +52,40 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">监管器描述</label>
+										<label class="control-label">store_type<span class="required">*</span></label>
+										<div class="controls">
+											<label class="checkbox line">
+											<input type="checkbox" name="store_type[]" value="2" /> RRD
+											</label>
+											<label class="checkbox line">
+											<input type="checkbox" name="store_type[]" value="4" /> REDIS
+											</label>
+											<span class="help-block">(select at least one)</span>
+											<div id="store_type_error"></div>	
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">madapter_type<span class="required">*</span></label>
+										<div class="controls">
+											<label class="radio line">
+											<input type="radio" name="madapter_type" value="1"/>
+											core类型
+											</label>
+											<label class="radio line">
+											<input type="radio" name="madapter_type" value="2"/>
+											normal类型
+											</label>
+											<div id="madapter_type_error"></div>	
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">描述</label>
 										<div class="controls">
 											<textarea class="large m-wrap" name="display_name" rows="3"></textarea>
 										</div>
 									</div>
 									<div class="form-actions">
-										<button type="button" class="btn blue" id="monitorBtn"><i class="icon-ok"></i> Save</button>
+										<button type="button" class="btn blue" id="mAdapter_btn"><i class="icon-ok"></i> Save</button>
 										<button type="button" class="btn">Cancel</button>
 									</div>
 								</form>
@@ -74,10 +102,16 @@
 </div>
 <!-- END PAGE CONTAINER-->
 
+<script src="media/js/jquery.uniform.min.js" type="text/javascript"></script>
 <script src="media/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="js/madapter.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-	var SwanmAdapter = new SwanmAdapter();
-	SwanmAdapter.setThisName('swanMonitor');
-	SwanmAdapter.init();
+	jQuery(document).ready(function() {
+		App.init();
+
+		var mAdapter = new SwanmAdapter();
+		mAdapter.init();
+		mAdapter.initAdd();
+	});
 </script>
