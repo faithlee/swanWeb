@@ -50,7 +50,8 @@ exports.indexList = function(req, res) {
  * module of madapter_add
  */
 exports.add = function(req, res) {
-	res.render('madapter_add', {title : '添加监控器'});
+	navHeader.subClassName = '监控器添加'
+	res.render('madapter_add', navHeader);
 }
 
 /*}}}*/
@@ -84,8 +85,8 @@ exports.addData = function (req, res) {
  * module of monitor_upate
  */
 exports.update = function(req, res) {
-	
-	res.render('monitor_update', {title : '修改监控器', keyword : '', content : ''});
+	navHeader.subClassName = '监控器修改';
+	res.render('monitor_update', navHeader);
 }
 
 /*}}}*/

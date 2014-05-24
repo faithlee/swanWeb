@@ -31,10 +31,10 @@ function SwanDevice() {
 
 	// }}}
 	// {{{ functions
-	// {{{ function init()
+	// {{{ init 
 
 	/**
-	 * 初始化  
+	 * init
 	 */
 	this.init = function()
 	{
@@ -132,32 +132,103 @@ function SwanDevice() {
 	}
 
 	/*}}}*/
+	/*{{{validate device_add form*/
+
+	/**
+	 * validate device_add form
+	 */
+	this.initAdd = function () {
+		$('#deviceForm').validate({
+			debug: true,
+			errorElement: 'span',
+			errorClass: 'help-inline',
+			focusInvalid: false,
+			//忽略的字段
+			ignore: '',
+			rules:  {
+				device_name: {required: true, minlength: 6},
+				host_name: {required: true, validHost: true}
+			},
+			messages: {
+				device_name: {
+					required: 'Please enter device name!'
+				},
+				host_name: {
+					required: 'Please enter host name!'
+				}
+			},
+			//display error alert on form submit
+			invalidHandler: function (event, validator) {               
+				var errors = validator.numberOfInvalids();
+				if (errors) {
+					M('Error', 'You have some form errors. Please check below. ');
+				}
+			},
+			// hightlight error inputs
+			highlight: function (element) { 
+				// display OK icon
+				$(element).closest('.help-inline').removeClass('ok'); 
+				// set error class to the control group
+				$(element).closest('.control-group').removeClass('success').addClass('error'); 
+            },
+			// revert the change dony by hightlight
+			unhighlight: function (element) { 
+				// set error class to the control group
+				$(element).closest('.control-group').removeClass('error');
+			},
+			//验证通过
+			success: function (label) {
+				label.addClass('valid').addClass('help-inline ok')
+				.closest('.control-group').removeClass('error').addClass('success'); 
+			},
+			submitHandler: function () {
+				M('Error', 'adasdasd');
+				//form.submit();
+			}
+		});
+		
+		//验证设备IP
+		$.validator.addMethod("validHost", function(value, element) {
+			var ip = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+
+			  return this.optional(element) || ip.test(value);
+		}, "Please specify the correct IP for your Device IP");
+
+	
+		//return false;
+	},
+
+	/*}}}*/
 	/*{{{ajax add device*/
 
 	/**
 	 * ajax add device
 	 */
 	this.addData = function() {
-		$.ajax({
-			url : gPrefixUrl + 'device_doAdd',
-			type : 'post',
-			data : $('#deviceForm').serialize(),
-			success : function (data) {
-				var result = eval('(' + data + ')');
-
-				if (10000 == data.code) {
-					var content = M('Success', result.msg)	
-				} else {
-					var content = M('Error', result.msg);
-				}
+		var _form = $('#deviceForm'); 
+		
+		if (_form.valid()) {
+			$.ajax({
+				url : gPrefixUrl + 'device_doAdd',
+				type : 'post',
+				data : _form.serialize(),
+				success : function (data) {
+					var result = eval('(' + data + ')');
 					
-				//$('.page-content').prepend(content)
+					if (10000 == parseInt(result.code)) {
+						var content = M('Success', result.msg)	
 
-//				setTimeout(function() {
-//					jQuery('.alert').remove();
-//				}, 3000);
-			}
-		});
+						var el = jQuery(".tab-content");
+						App.blockUI(el);
+						window.setTimeout(function () {
+							App.unblockUI(el);
+						}, 1000);
+					} else {
+						var content = M('Error', result.msg);
+					}
+				}
+			});
+		}
 	}
 
 	/*}}}*/

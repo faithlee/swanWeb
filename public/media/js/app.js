@@ -795,7 +795,7 @@ var App = function () {
                     },
                     overlayCSS: {
                         backgroundColor: '#000',
-                        opacity: 0.05,
+                        opacity: 0.25,
                         cursor: 'wait'
                     }
                 });

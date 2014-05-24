@@ -3,14 +3,14 @@
 		<ul class="breadcrumb">
 			<li>
 				<i class="icon-home"></i>
-				<a href="index.html">Home</a>
+				<a href="/">SWANSOFT Home</a>
 				<span class="icon-angle-right"></span>
 			</li>
 			<li>
-				<a href="#">Form Stuff</a>
+				<a href="javascript:;"><%= className %></a>
 				<span class="icon-angle-right"></span>
 			</li>
-			<li><a href="#">Form Layouts</a></li>
+			<li><a href="javascript:;"><%= subClassName %></a></li>
 		</ul>
 	</div>
 </div>
@@ -24,7 +24,7 @@
 				<div class="portlet-title">
 					<div class="caption">
 						<i class="icon-reorder"></i>
-						<span class="hidden-480">General Layouts</span>
+						<span class="hidden-480"><%= subClassName %></span>
 					</div>
 				</div>
 				<div class="portlet-body form">
@@ -37,17 +37,15 @@
 								<!-- BEGIN FORM-->
 								<form action="/device_doAdd" method="post" class="form-horizontal" id="deviceForm">
 									<div class="control-group">
-										<label class="control-label">设备名称</label>
+										<label class="control-label">设备名称<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" name="device_name" placeholder="device name" class="m-wrap medium" />
-											<span class="help-inline">*</span>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">设备IP</label>
+										<label class="control-label">设备IP<span class="required">*</span></label>
 										<div class="controls">
 											<input type="text" placeholder="device IP" name="host_name" class="m-wrap medium" />
-											<span class="help-inline">*</span>
 										</div>
 									</div>
 									<div class="control-group">
@@ -73,9 +71,10 @@
 	<!-- END PAGE CONTENT-->
 </div>
 <!-- END PAGE CONTAINER-->
+<script src="media/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="js/device.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var swanDevice = new SwanDevice();
-	swanDevice.setThisName('swanDevice');
 	swanDevice.init();
+	swanDevice.initAdd();
 </script>

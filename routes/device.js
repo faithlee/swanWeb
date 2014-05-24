@@ -52,7 +52,8 @@ exports.indexList = function (req, res) {
  * add device
  */
 exports.add = function(req, res) {
-	res.render('device_add', {title : '设备添加', keyword : '设备添加'});
+	navHeader.subClassName = '设备添加';
+	res.render('device_add', navHeader);
 }
 
 // }}}
@@ -86,7 +87,8 @@ exports.addData = function (req, res) {
  * update device
  */
 exports.update = function(req, res) {
-	res.render('device_update', {title : '设备管理修改', keyword : '', content : ''});
+	navHeader.subClassName = '设备修改'
+	res.render('device_update', navHeader);
 
 }
 
