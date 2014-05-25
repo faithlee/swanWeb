@@ -77,7 +77,7 @@ function SwanmAdapter() {
 					{'data': function (obj) {
 						var detailHtml = [];
 
-						detailHtml.push('<a class="btn mini green-stripe" attr_id="' + obj.madapter_id + '" onClick="swanIndex.mainPage(\'/madapter_attr?madapter_id=' + obj.madapter_id + '\')" href="javascript:;">attribute</a>');
+						detailHtml.push('<a class="btn mini green-stripe" attr_id="' + obj.madapter_id + '" onClick="swanIndex.mainPage(\'/mAdapterAttr?madapter_id=' + obj.madapter_id + '\')" href="javascript:;">attribute</a>');
 						detailHtml.push('<a class="btn mini blue-stripe" attr_id="' + obj.madapter_id + '" href="javascript:;">metric</a>');
 						detailHtml.push('<a class="btn mini red-stripe" attr_id="' + obj.madapter_id + '" href="javascript:;">achives</a>');
 

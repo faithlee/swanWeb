@@ -28,7 +28,7 @@ var base = require('../lib/base.js');
 var common = require('../lib/common');
 
 var D = base.Debug;
-var navHeader = {className: '适配器管理', subClassName: '适配器管理列表'};
+var navHeader = {className: '适配器管理', subClassName: '适配器属性列表'};
 
 /*{{{show mAdapter page*/
 
@@ -76,6 +76,58 @@ exports.indexList = function (req, res) {
 	};
 
 	common.handleData(res, options);
+};
+
+/*}}}*/
+/*{{{add attr */
+
+/**
+ * add attr  
+ */
+exports.add = function (req, res) {
+	navHeader.subClassName = '适配器属性添加';
+
+	res.render('mAdapterAttr_add', navHeader);
+};
+
+/*}}}*/
+/*{{{add attr data*/
+
+/**
+ * add attr data 
+ */
+exports.addData = function (req, res) {
+
+};
+
+/*}}}*/
+/*{{{update attr*/
+
+/**
+ * update attr   
+ */
+exports.update = function () {
+
+};
+
+/*}}}*/
+/*{{{update attr data */
+
+/**
+ * update attr data 
+ */
+exports.updateData = function (req, res) {
+
+};
+
+/*}}}*/
+/*{{{delete attr data*/
+
+/**
+ * delete attr data 
+ */
+exports.deleteData = function (req, res) {
+
 };
 
 /*}}}*/

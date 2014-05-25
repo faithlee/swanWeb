@@ -82,9 +82,27 @@ function SwanmAdapterAttr() {
 			jQuery('#madapterAttr_table_wrapper .dataTables_filter input').addClass("m-wrap small"); 
 	        jQuery('#madapterAttr_table_wrapper .dataTables_length select').addClass("m-wrap small"); 
 			jQuery('#madapterAttr_table_wrapper .dataTables_length select').select2();
-
-			
 		});
+	}
+
+	/*}}}*/
+	/*{{{validate add attr */
+	
+	/**
+	 * validate add attr  
+	 */
+	this.initAdd = function () {
+	
+	},
+	
+	/*}}}*/
+	/*{{{add attr data*/
+	
+	/**
+	 * add attr data
+	 */
+	this.addData = function () {
+	
 	}
 
 	/*}}}*/

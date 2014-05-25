@@ -69,6 +69,49 @@ function ModuleBase()
 	}
 
 	// }}}
+	/*{{{function handleUniform()*/
+	
+	/**
+	 * 复选框单选框样式效果 
+	 *
+	 * return void
+	 */
+	this.handleUniform = function () {
+		if (!jQuery().uniform) {
+			return;
+		}
+
+		var test = $("input[type=checkbox]:not(.toggle), input[type=radio]:not(.toggle, .star)");
+		if (test.size() > 0) {
+			test.each(function () {
+				if ($(this).parents(".checker").size() == 0) {
+					$(this).show();
+					$(this).uniform();
+				}
+			});
+		}
+	}
+	
+	/*}}}*/
+	/*{{{function initUniforma()*/
+
+	/**
+	 * todo 复选框单选框样式效果
+	 */
+	var initUniform = function (els) {
+            if (els) {
+                jQuery(els).each(function () {
+					if ($(this).parents(".checker").size() == 0) {
+						$(this).show();
+						$(this).uniform();
+					}
+				});
+            } else {
+                handleUniform();
+            }
+        }
+
+	/*}}}*/
 	// }}}
 }
 /*{{{Global VAR*/

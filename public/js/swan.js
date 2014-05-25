@@ -57,13 +57,14 @@ var swan = function () {
 	/**
 	 * alert message
 	 */
-	this.alertMsg = function (status, content, time = 3000) {
+	this.alertMsg = function (status, content, time) {
 		//var statusArr = ['warning', 'success', 'info', 'error'];
 		var msgHtml = [];
-		var status, className, msg; 
-		msg = undefined == typeof(status) || '' == status ? 'Warning' : status;
+		var status, className, msg, time; 
+		msg = 'undefined' == typeof(status) || '' == status ? 'Warning' : status;
 		className = 'Waring' == status ? '' : ' alert-' + status.toLowerCase();
-
+		time = 'undefined' == typeof(time) ? 3000 : time;
+		
 		//msg = status.replace(/(\w)/g, function ($1) {
 		//	return $1.toUpperCase;	
 		//});

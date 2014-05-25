@@ -23,7 +23,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<!-- BEGIN SAMPLE FORM PORTLET-->
-			<div class="portlet box blue tabbable">
+			<div class="portlet box blue">
 				<div class="portlet-title">
 					<div class="caption">
 						<i class="icon-reorder"></i>
@@ -31,68 +31,59 @@
 					</div>
 				</div>
 				<div class="portlet-body form">
-					<div class="tabbable portlet-tabs">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#portlet_tab1" data-toggle="tab">Default</a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane active" id="portlet_tab1">
-								<!-- BEGIN FORM-->
-								<form action="#" method="post" class="form-horizontal" id="mAdapterForm">
-									<div class="control-group">
-										<label class="control-label">名称<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="name" placeholder="mAdapter name" class="m-wrap medium" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">STEPS<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" placeholder="300" name="steps" class="m-wrap medium" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">store_type<span class="required">*</span></label>
-										<div class="controls">
-											<label class="checkbox line">
-											<input type="checkbox" name="store_type[]" value="2" /> RRD
-											</label>
-											<label class="checkbox line">
-											<input type="checkbox" name="store_type[]" value="4" /> REDIS
-											</label>
-											<span class="help-block">(select at least one)</span>
-											<div id="store_type_error"></div>	
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">madapter_type<span class="required">*</span></label>
-										<div class="controls">
-											<label class="radio line">
-											<input type="radio" name="madapter_type" value="1"/>
-											core类型
-											</label>
-											<label class="radio line">
-											<input type="radio" name="madapter_type" value="2"/>
-											normal类型
-											</label>
-											<div id="madapter_type_error"></div>	
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">描述</label>
-										<div class="controls">
-											<textarea class="large m-wrap" name="display_name" rows="3"></textarea>
-										</div>
-									</div>
-									<div class="form-actions">
-										<button type="button" class="btn blue" id="mAdapter_btn"><i class="icon-ok"></i> Save</button>
-										<button type="button" class="btn">Cancel</button>
-									</div>
-								</form>
-								<!-- END FORM-->
+					<!-- BEGIN FORM-->
+					<form action="#" method="post" class="form-horizontal" id="mAdapterForm">
+						<div class="control-group">
+							<label class="control-label">名称<span class="required">*</span></label>
+							<div class="controls">
+								<input type="text" name="name" placeholder="mAdapter name" class="m-wrap span6" />
 							</div>
 						</div>
-					</div>
+						<div class="control-group">
+							<label class="control-label">STEPS<span class="required">*</span></label>
+							<div class="controls">
+								<input type="text" placeholder="300" name="steps" class="m-wrap span6" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">store_type<span class="required">*</span></label>
+							<div class="controls">
+								<label class="checkbox line">
+								<input type="checkbox" name="store_type[]" value="2" /> RRD
+								</label>
+								<label class="checkbox line">
+								<input type="checkbox" name="store_type[]" value="4" /> REDIS
+								</label>
+								<span class="help-block">(select at least one)</span>
+								<div id="store_type_error"></div>	
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">madapter_type<span class="required">*</span></label>
+							<div class="controls">
+								<label class="radio line">
+								<input type="radio" name="madapter_type" value="1"/>
+								core类型
+								</label>
+								<label class="radio line">
+								<input type="radio" name="madapter_type" value="2"/>
+								normal类型
+								</label>
+								<div id="madapter_type_error"></div>	
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">描述</label>
+							<div class="controls">
+								<textarea class="span6 m-wrap" name="display_name" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="button" class="btn blue" id="mAdapter_btn"><i class="icon-ok"></i> Save</button>
+							<button type="button" class="btn">Cancel</button>
+						</div>
+					</form>
+					<!-- END FORM-->
 				</div>
 			</div>
 			<!-- END SAMPLE FORM PORTLET-->
@@ -108,9 +99,8 @@
 
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-		App.init();
-
 		var mAdapter = new SwanmAdapter();
+		mAdapter.handleUniform();
 		mAdapter.init();
 		mAdapter.initAdd();
 	});

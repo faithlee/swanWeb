@@ -20,7 +20,7 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<!-- BEGIN SAMPLE FORM PORTLET-->
-			<div class="portlet box blue tabbable">
+			<div class="portlet box blue">
 				<div class="portlet-title">
 					<div class="caption">
 						<i class="icon-reorder"></i>
@@ -28,48 +28,38 @@
 					</div>
 				</div>
 				<div class="portlet-body form">
-					<div class="tabbable portlet-tabs">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#portlet_tab1" data-toggle="tab">Default</a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane active" id="portlet_tab1">
-								<!-- BEGIN FORM-->
-								<form action="/device_doAdd" method="post" class="form-horizontal" id="deviceForm">
-									<div class="control-group">
-										<label class="control-label">设备名称<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" name="device_name" placeholder="device name" class="m-wrap medium" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">设备IP<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" placeholder="device IP" name="host_name" class="m-wrap medium" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">心跳线超时时间<span class="required">*</span></label>
-										<div class="controls">
-											<input type="text" placeholder="20" name="heartbeat_time" class="m-wrap medium" />
-										</div>
-									</div>
-
-									<div class="control-group">
-										<label class="control-label">设备信息<span class="required">&nbsp;&nbsp;</span></label>
-										<div class="controls">
-											<textarea class="large m-wrap" name="display_name" rows="3"></textarea>
-										</div>
-									</div>
-									<div class="form-actions">
-										<button type="button" class="btn blue" id="deviceBtn"><i class="icon-ok"></i> Save</button>
-										<button type="button" class="btn">Cancel</button>
-									</div>
-								</form>
-								<!-- END FORM-->
+					<!-- BEGIN FORM-->
+					<form action="/device_doAdd" method="post" class="form-horizontal" id="deviceForm">
+						<div class="control-group">
+							<label class="control-label">设备名称<span class="required">*</span></label>
+							<div class="controls">
+								<input type="text" name="device_name" placeholder="device name" class="m-wrap span6" />
 							</div>
 						</div>
-					</div>
+						<div class="control-group">
+							<label class="control-label">设备IP<span class="required">*</span></label>
+							<div class="controls">
+								<input type="text" placeholder="device IP" name="host_name" class="m-wrap span6" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">心跳线超时时间<span class="required">*</span></label>
+							<div class="controls">
+								<input type="text" placeholder="20" name="heartbeat_time" class="m-wrap span6" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">设备信息<span class="required">&nbsp;&nbsp;</span></label>
+							<div class="controls">
+								<textarea class="span6 m-wrap" name="display_name" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="button" class="btn blue" id="deviceBtn"><i class="icon-ok"></i> Save</button>
+							<button type="button" class="btn">Cancel</button>
+						</div>
+					</form>
+					<!-- END FORM-->
 				</div>
 			</div>
 			<!-- END SAMPLE FORM PORTLET-->
